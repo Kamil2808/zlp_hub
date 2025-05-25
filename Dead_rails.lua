@@ -55,7 +55,28 @@ local success, err = pcall(function()
         
     elseif game.PlaceId == 116495829188952 then
         if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > 5700 then
-            print("ye")
+            local OSTime = os.time()
+			local Time = os.date('!*t', OSTime)
+			local Content = ''
+			local Embed = {
+			    title = game:GetService("Players").LocalPlayer.Name,  -- Используйте `=` вместо `:`
+			    description = "Has more than 5700 bonds",
+			    color = 5814783,
+			    footer = {
+			        text = "ZLP_HUB"
+ 			   },  -- Запятая вместо точки с запятой
+			    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+			}
+			
+			local requestFunc = syn and syn.request or http_request or request  -- Добавлен `request` для других эксплоитов
+			requestFunc({
+			    Url = 'https://discord.com/api/webhooks/1374067084316905582/m2zdxBhr-_6tLk5xiOo8j-OZXLCuTSXKdjwf6m-G_lGTafdmmaerLMq_v9a0zlwyTw0b',
+			    Method = 'POST',
+			    Headers = {
+			        ['Content-Type'] = 'application/json'
+			    },
+			    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+			})
         else
             local dt = DateTime.now().UnixTimestamp
             while true do
