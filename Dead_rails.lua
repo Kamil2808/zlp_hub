@@ -65,7 +65,7 @@ local success, err = pcall(function()
 			    color = 5814783,
 			    footer = {
 			        text = "ZLP_HUB"
- 			   },  -- Запятая вместо точки с запятой
+ 			   },  
 			    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
 			}
 
@@ -81,7 +81,7 @@ local success, err = pcall(function()
         else
             local dt = DateTime.now().UnixTimestamp
             while true do
-                if (dt - DateTime.now().UnixTimestamp)/1000 > 60 then
+                if (DateTime.now().UnixTimestamp - dt)/1000 > 60 then
                     local ts = game:GetService("TeleportService")
                     local p = game:GetService("Players").LocalPlayer
                     ts:Teleport(116495829188952, p)
