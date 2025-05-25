@@ -81,7 +81,7 @@ local success, err = pcall(function()
         else
             local dt = DateTime.now().UnixTimestamp
             while true do
-                if (dt - DateTime.now().UnixTimestamp)/1000 > 60 then
+                if (DateTime.now().UnixTimestamp - dt)/1000 > 60 then
                     local ts = game:GetService("TeleportService")
                     local p = game:GetService("Players").LocalPlayer
                     ts:Teleport(116495829188952, p)
