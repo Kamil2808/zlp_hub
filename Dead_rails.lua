@@ -86,11 +86,9 @@ local success, err = pcall(function()
                     local p = game:GetService("Players").LocalPlayer
                     ts:Teleport(116495829188952, p)
                 else
-					print("z")
                     local z = workspace.PartyZones.PartyZone.BillboardGui.PlayerCount.Text
                     local ammount = tonumber(z:match("%d+"))
                     if ammount == 0 then
-						print("v")
                         workspace.PartyZones.PartyZone.Hitbox.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                         wait(0.1)
                         local args = {
