@@ -33,10 +33,6 @@ local success, err = pcall(function()
             ts:Teleport(116495829188952, p)
         end
         
-        local args = {
-            false
-        }
-        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
 
         local dt = DateTime.now().UnixTimestamp
         getgenv().disable_auto_execute = true
@@ -47,6 +43,11 @@ local success, err = pcall(function()
         
         while x do
             if (DateTime.now().UnixTimestamp - dt)/1000 > 180 then
+				print("l")
+				local args = {
+           			false
+        		}
+        		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
                 game.Players.LocalPlayer.Character:BreakJoints()
                 x = false
             end
@@ -56,27 +57,27 @@ local success, err = pcall(function()
     elseif game.PlaceId == 116495829188952 then
         if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > 5700 then
             local OSTime = os.time()
-            local Time = os.date('!*t', OSTime)
-            local Content = ''
-            local Embed = {
-                title = game:GetService("Players").LocalPlayer.Name,  -- Используйте `=` вместо `:`
-                description = "Has more than 5700 bonds",
-                color = 5814783,
-                footer = {
-                    text = "ZLP_HUB"
-                },  -- Запятая вместо точки с запятой
-                timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-            }
-            
-            local requestFunc = syn and syn.request or http_request or request  -- Добавлен `request` для других эксплоитов
-            requestFunc({
-                Url = 'https://discord.com/api/webhooks/1374067084316905582/m2zdxBhr-_6tLk5xiOo8j-OZXLCuTSXKdjwf6m-G_lGTafdmmaerLMq_v9a0zlwyTw0b',
-                Method = 'POST',
-                Headers = {
-                    ['Content-Type'] = 'application/json'
-                },
-                Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-            })
+			local Time = os.date('!*t', OSTime)
+			local Content = ''
+			local Embed = {
+			    title = game:GetService("Players").LocalPlayer.Name,  -- Используйте `=` вместо `:`
+			    description = "Has more than 5700 bonds",
+			    color = 5814783,
+			    footer = {
+			        text = "ZLP_HUB"
+ 			   },  -- Запятая вместо точки с запятой
+			    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+			}
+
+			local requestFunc = syn and syn.request or http_request or request  -- Добавлен `request` для других эксплоитов
+			requestFunc({
+			    Url = 'https://discord.com/api/webhooks/1374067084316905582/m2zdxBhr-_6tLk5xiOo8j-OZXLCuTSXKdjwf6m-G_lGTafdmmaerLMq_v9a0zlwyTw0b',
+			    Method = 'POST',
+			    Headers = {
+			        ['Content-Type'] = 'application/json'
+			    },
+			    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+			})
         else
             local dt = DateTime.now().UnixTimestamp
             while true do
