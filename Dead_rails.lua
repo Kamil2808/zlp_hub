@@ -42,7 +42,7 @@ local success, err = pcall(function()
         local x = true
         
         while x do
-            print((DateTime.now().UnixTimestamp - dt)/1000)
+            print((DateTime.now().UnixTimestamp, dt)/1000)
             if (DateTime.now().UnixTimestamp - dt)/1000 > 180 then
 				print("l")
 				local args = {
@@ -90,8 +90,8 @@ local success, err = pcall(function()
                 else
                     print("ye")
                     local z = workspace.PartyZones.PartyZone.BillboardGui.PlayerCount.Text
-                    local ammount = tonumber(z:sub(1, 1))
-                    if ammount == 0 then
+                    local ammount = z:sub(1, 1)
+                    if ammount == "0" then
                         workspace.PartyZones.PartyZone.Hitbox.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                         wait(0.1)
                         local args = {
