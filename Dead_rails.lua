@@ -88,6 +88,7 @@ local success, err = pcall(function()
                     ts:Teleport(116495829188952, p)
                     wait(1)
                 else
+                    print("ye")
                     local z = workspace.PartyZones.PartyZone.BillboardGui.PlayerCount.Text
                     local ammount = tonumber(z:sub(1, 1))
                     if ammount == 0 then
@@ -101,9 +102,8 @@ local success, err = pcall(function()
                             }
                         }
                         game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("Network"):WaitForChild("RemoteEvent"):WaitForChild("CreateParty"):FireServer(unpack(args))
-                        wait(0.1)
                     end
-                    wait(0.1)
+                    wait(1)
                 end 
             end
         end
