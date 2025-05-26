@@ -13,7 +13,7 @@ local success, err = pcall(function()
             writefile("ZLP_HUB/Dead_Rails.dat", "{}")
         end
 
-        local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) -- {"nick1": 1, "nick": 1}
+        local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
 
         if not data[tostring(game:GetService("Players").LocalPlayer.UserId)] then
             data[tostring(game:GetService("Players").LocalPlayer.UserId)] = 1
@@ -42,6 +42,7 @@ local success, err = pcall(function()
         local x = true
         
         while x do
+            print((DateTime.now().UnixTimestamp - dt)/1000)
             if (DateTime.now().UnixTimestamp - dt)/1000 > 180 then
 				print("l")
 				local args = {
@@ -49,13 +50,13 @@ local success, err = pcall(function()
         		}
         		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
                 game.Players.LocalPlayer.Character:BreakJoints()
-                x = false
+
             end
             wait(1)      
         end
         
     elseif game.PlaceId == 116495829188952 then
-        if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > 5700 then
+        if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > 999999 then
             local OSTime = os.time()
 			local Time = os.date('!*t', OSTime)
 			local Content = ''
@@ -85,9 +86,10 @@ local success, err = pcall(function()
                     local ts = game:GetService("TeleportService")
                     local p = game:GetService("Players").LocalPlayer
                     ts:Teleport(116495829188952, p)
+                    wait(1)
                 else
                     local z = workspace.PartyZones.PartyZone.BillboardGui.PlayerCount.Text
-                    local ammount = tonumber(z:match("%d+"))
+                    local ammount = tonumber(z:sub(1, 1))
                     if ammount == 0 then
                         workspace.PartyZones.PartyZone.Hitbox.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                         wait(0.1)
