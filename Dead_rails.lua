@@ -1,6 +1,5 @@
 print("Executing dead rails script...")
 
-wait(2)
 -- Load and execute the script
 local success, err = pcall(function()
     if game.PlaceId == 70876832253163 then 
@@ -43,7 +42,7 @@ local success, err = pcall(function()
         local x = true
         
         while x do
-            print((DateTime.now().UnixTimestamp, dt)/1000)
+            print(DateTime.now().UnixTimestamp, dt)
             if (DateTime.now().UnixTimestamp - dt)/1000 > 180 then
 				print("l")
 				local args = {
