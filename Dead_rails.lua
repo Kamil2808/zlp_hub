@@ -1,5 +1,6 @@
 print("Executing dead rails script...")
 
+wait(2)
 -- Load and execute the script
 local success, err = pcall(function()
     if game.PlaceId == 70876832253163 then 
