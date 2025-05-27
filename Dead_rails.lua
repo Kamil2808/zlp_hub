@@ -1,8 +1,11 @@
+getgenv().retry = 5
+getgenv().webhook_link = "https://discord.com/api/webhooks/1374067084316905582/m2zdxBhr-_6tLk5xiOo8j-OZXLCuTSXKdjwf6m-G_lGTafdmmaerLMq_v9a0zlwyTw0b"
+getgenv().bonds = 5700
+        
 print("Executing ZLP_HUB dead rails script...")
 
 -- Load and execute the script
 if game.PlaceId == 70876832253163 then 
-    print("help3")
     local zov = false
     if not isfolder("ZLP_HUB") then  
         makefolder("ZLP_HUB") 
@@ -45,7 +48,6 @@ if game.PlaceId == 70876832253163 then
     end
 
 elseif game.PlaceId == 116495829188952 then
-    print("help2")
     if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
@@ -69,7 +71,6 @@ elseif game.PlaceId == 116495829188952 then
 		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
 		})
     else
-        print("help1")
         local dt = DateTime.now().UnixTimestamp
         while true do
             if (DateTime.now().UnixTimestamp - dt) > 60 then
@@ -78,7 +79,6 @@ elseif game.PlaceId == 116495829188952 then
                 ts:Teleport(116495829188952, p)
                 wait(1)
             else
-                print("help")
                 local z = workspace.PartyZones.PartyZone.BillboardGui.PlayerCount.Text
                 local ammount = z:sub(1, 1)
                 if ammount == "0" then
