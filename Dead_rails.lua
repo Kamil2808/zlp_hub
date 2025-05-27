@@ -1,7 +1,3 @@
-getgenv().retry = 5
-getgenv().webhook_link = "https://discord.com/api/webhooks/1374067084316905582/m2zdxBhr-_6tLk5xiOo8j-OZXLCuTSXKdjwf6m-G_lGTafdmmaerLMq_v9a0zlwyTw0b"
-getgenv().bonds = 5700
-        
 print("Executing ZLP_HUB dead rails script...")
 
 -- Load and execute the script
@@ -54,7 +50,7 @@ elseif game.PlaceId == 116495829188952 then
 		local Content = ''
 		local Embed = {
 		    title = game:GetService("Players").LocalPlayer.Name, 
-		    description = "Has more than " + tostring(getgenv().bonds) + " bonds",
+		    description = "Has more than " .. tostring(getgenv().bonds) .. " bonds",
 		    color = 5814783,
 		    footer = {
 		        text = "ZLP_HUB"
