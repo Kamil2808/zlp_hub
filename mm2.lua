@@ -89,7 +89,7 @@ if game.PlaceId == 142823291 then
         if child:IsA('BasePart') and child.Name == "Coin_Server" then
           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = child.CFrame
           --bypassTP(child.CFrame)
-          wait(2.9)
+          wait()
         end
       end
       wait()
