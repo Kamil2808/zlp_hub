@@ -1,3 +1,4 @@
+     
 print("Executing ZLP_HUB dead rails script...")
 
 -- Load and execute the script
@@ -31,30 +32,34 @@ if game.PlaceId == 70876832253163 then
     getgenv().auto_bond = true
     loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();
     local x = true
+    local v = true
     
     while x do
         if (DateTime.now().UnixTimestamp - dt) > 180 then
-            local OSTime = os.time()
-		    local Time = os.date('!*t', OSTime)
-		    local Content = ''
-		    local Embed = {
-		        title = game:GetService("Players").LocalPlayer.Name, 
-		        description = "Failed!",
-		        color = 16721703,
-		        footer = {
-		            text = "ZLP_HUB"
-		       },  
-		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-		    }
-		    local requestFunc = syn and syn.request or http_request or request  
-		    requestFunc({
-		        Url = getgenv().webhook_link,
-		        Method = 'POST',
-		        Headers = {
-		            ['Content-Type'] = 'application/json'
-		        },
-		        Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-		    })
+            if v then
+                local OSTime = os.time()
+		        local Time = os.date('!*t', OSTime)
+		        local Content = ''
+		        local Embed = {
+		            title = game:GetService("Players").LocalPlayer.Name, 
+		            description = "Failed!",
+		            color = 16721703,
+		            footer = {
+		                text = "ZLP_HUB"
+		           },  
+		            timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		        }
+		        local requestFunc = syn and syn.request or http_request or request  
+		        requestFunc({
+		            Url = getgenv().webhook_link,
+		            Method = 'POST',
+		            Headers = {
+		                ['Content-Type'] = 'application/json'
+		            },
+		            Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		        })
+                v = false
+            end
 			local args = {
        			false
     		}
@@ -69,7 +74,6 @@ if game.PlaceId == 70876832253163 then
     end
 
 elseif game.PlaceId == 116495829188952 then
-    wait(3)
     if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
@@ -93,6 +97,27 @@ elseif game.PlaceId == 116495829188952 then
 		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
 		})
     else
+        local OSTime = os.time()
+		local Time = os.date('!*t', OSTime)
+		local Content = ''
+		local Embed = {
+		    title = game:GetService("Players").LocalPlayer.Name, 
+		    description = "Has " .. tostring(getgenv().bonds) .. " bonds",
+		    color = 5814783,
+		    footer = {
+		        text = "ZLP_HUB"
+		   },  
+		    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		}
+		local requestFunc = syn and syn.request or http_request or request  
+		requestFunc({
+		    Url = getgenv().webhook_link,
+		    Method = 'POST',
+		    Headers = {
+		        ['Content-Type'] = 'application/json'
+		    },
+		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		})
         local dt = DateTime.now().UnixTimestamp
         while true do
             if (DateTime.now().UnixTimestamp - dt) > 60 then
