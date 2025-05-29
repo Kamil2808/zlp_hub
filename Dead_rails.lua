@@ -48,6 +48,7 @@ if game.PlaceId == 70876832253163 then
     end
 
 elseif game.PlaceId == 116495829188952 then
+  wait(5)
     if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
