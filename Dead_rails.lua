@@ -33,13 +33,13 @@ if game.PlaceId == 70876832253163 then
     local x = true
     
     while x do
-        if (DateTime.now().UnixTimestamp - dt) > 180 then
+        if (DateTime.now().UnixTimestamp - dt) > 120 then
 			local args = {
        			false
     		}
     		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
             game.Players.LocalPlayer.Character:BreakJoints()
-        elseif (DateTime.now().UnixTimestamp - dt) > 220 then
+        elseif (DateTime.now().UnixTimestamp - dt) > 160 then
             local ts = game:GetService("TeleportService")
             local p = game:GetService("Players").LocalPlayer
             ts:Teleport(116495829188952, p)
