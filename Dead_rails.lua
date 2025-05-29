@@ -1,3 +1,7 @@
+getgenv().retry = 5
+getgenv().webhook_link = "https://discord.com/api/webhooks/1374067084316905582/m2zdxBhr-_6tLk5xiOo8j-OZXLCuTSXKdjwf6m-G_lGTafdmmaerLMq_v9a0zlwyTw0b"
+getgenv().bonds = 5700
+        
 print("Executing ZLP_HUB dead rails script...")
 
 -- Load and execute the script
@@ -33,13 +37,34 @@ if game.PlaceId == 70876832253163 then
     local x = true
     
     while x do
-        if (DateTime.now().UnixTimestamp - dt) > 120 then
+        if (DateTime.now().UnixTimestamp - dt) > 180 then
+            local OSTime = os.time()
+		    local Time = os.date('!*t', OSTime)
+		    local Content = ''
+		    local Embed = {
+		        title = game:GetService("Players").LocalPlayer.Name, 
+		        description = "Failed!",
+		        color = 16721703,
+		        footer = {
+		            text = "ZLP_HUB"
+		       },  
+		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		    }
+		    local requestFunc = syn and syn.request or http_request or request  
+		    requestFunc({
+		        Url = getgenv().webhook_link,
+		        Method = 'POST',
+		        Headers = {
+		            ['Content-Type'] = 'application/json'
+		        },
+		        Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		    })
 			local args = {
        			false
     		}
     		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
             game.Players.LocalPlayer.Character:BreakJoints()
-        elseif (DateTime.now().UnixTimestamp - dt) > 160 then
+        elseif (DateTime.now().UnixTimestamp - dt) > 220 then
             local ts = game:GetService("TeleportService")
             local p = game:GetService("Players").LocalPlayer
             ts:Teleport(116495829188952, p)
@@ -48,7 +73,7 @@ if game.PlaceId == 70876832253163 then
     end
 
 elseif game.PlaceId == 116495829188952 then
-  wait(5)
+    wait(3)
     if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
