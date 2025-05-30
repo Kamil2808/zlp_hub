@@ -40,6 +40,7 @@ if game.PlaceId == 70876832253163 then
     local CardScreen = game:GetService("CoreGui"):WaitForChild("CardScreen")
 
     while x do
+        print(DateTime.now().UnixTimestamp - dt, CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0")
         if ((DateTime.now().UnixTimestamp - dt) > 20) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
             if v then
                 local OSTime = os.time()
