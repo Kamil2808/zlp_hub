@@ -40,7 +40,7 @@ if game.PlaceId == 70876832253163 then
     local CardScreen = game:GetService("CoreGui"):WaitForChild("CardScreen")
 
     while x do
-        if ((DateTime.now().UnixTimestamp - dt) > 20) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3] == "0") then
+        if ((DateTime.now().UnixTimestamp - dt) > 20) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
             if v then
                 local OSTime = os.time()
 		        local Time = os.date('!*t', OSTime)
@@ -70,7 +70,7 @@ if game.PlaceId == 70876832253163 then
     		}
     		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
             game.Players.LocalPlayer.Character:BreakJoints()
-        elseif ((DateTime.now().UnixTimestamp - dt) > 40) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3] == "0") then
+        elseif ((DateTime.now().UnixTimestamp - dt) > 40) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
             local ts = game:GetService("TeleportService")
             local p = game:GetService("Players").LocalPlayer
             ts:Teleport(116495829188952, p)
