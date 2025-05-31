@@ -1,6 +1,6 @@
---getgenv().retry = 5
---getgenv().webhook_link = "https://discord.com/api/webhooks/1374067084316905582/m2zdxBhr-_6tLk5xiOo8j-OZXLCuTSXKdjwf6m-G_lGTafdmmaerLMq_v9a0zlwyTw0b"
---getgenv().bonds = 5700
+getgenv().retry = getgenv().retry or 0
+getgenv().webhook_link = getgenv().webhook_link or "0"
+getgenv().bonds = getgenv().bonds or 0
 
 print("Executing ZLP_HUB dead rails script...")
 
