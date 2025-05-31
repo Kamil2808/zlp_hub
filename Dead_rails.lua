@@ -17,17 +17,17 @@ if game.PlaceId == 70876832253163 then
     if not data[tostring(game:GetService("Players").LocalPlayer.UserId)] then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)] = {}
     end
-    if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins then
-        data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins = 0
+    if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].retry then
+        data[tostring(game:GetService("Players").LocalPlayer.UserId)].retry = 0
     end
     if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = 0
     end
     if getgenv().retry ~= 0 or getgenv().retry ~= nil then
-        data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins = data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins + 1
-        if data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins > getgenv().retry then
+        data[tostring(game:GetService("Players").LocalPlayer.UserId)].retry = data[tostring(game:GetService("Players").LocalPlayer.UserId)].retry + 1
+        if data[tostring(game:GetService("Players").LocalPlayer.UserId)].retry > getgenv().retry then
             zov = true
-            data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins = 0
+            data[tostring(game:GetService("Players").LocalPlayer.UserId)].retry = 0
         end
     end
     if getgenv().bonds ~= nil then
@@ -134,8 +134,8 @@ elseif game.PlaceId == 116495829188952 then
     if not data[tostring(game:GetService("Players").LocalPlayer.UserId)] then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)] = {}
     end
-    if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins then
-        data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins = 0
+    if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].retry then
+        data[tostring(game:GetService("Players").LocalPlayer.UserId)].retry = 0
     end
     if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = 0
