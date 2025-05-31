@@ -23,16 +23,17 @@ if game.PlaceId == 70876832253163 then
     if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = 0
     end
-    if getgenv().retry ~= 0 then
+    if getgenv().retry ~= 0 or getgenv().retry ~= nil then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins = data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins + 1
         if data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins > getgenv().retry then
             zov = true
             data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins = 0
         end
     end
-
-    if data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds > getgenv().bonds then
-        zov = true
+    if getgenv().bonds ~= nil then
+        if data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds > getgenv().bonds then
+            zov = true
+        end
     end
 
     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
@@ -42,7 +43,7 @@ if game.PlaceId == 70876832253163 then
         ts:Teleport(116495829188952, p)
     end
     
-    if tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds then
+    if tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds and getgenv().webhook_link ~= nil then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
 		local Content = ''
@@ -77,7 +78,7 @@ if game.PlaceId == 70876832253163 then
 
         while x do
             if ((DateTime.now().UnixTimestamp - dt) > 20) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
-                if v then
+                if v and getgenv().webhook_link ~= nil then
                     local OSTime = os.time()
 	    	        local Time = os.date('!*t', OSTime)
 	    	        local Content = ''
@@ -129,6 +130,7 @@ elseif game.PlaceId == 116495829188952 then
     if not isfile("ZLP_HUB/Dead_Rails.dat") then
         writefile("ZLP_HUB/Dead_Rails.dat", "{}")
     end
+    local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
     if not data[tostring(game:GetService("Players").LocalPlayer.UserId)] then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)] = {}
     end
@@ -147,7 +149,7 @@ elseif game.PlaceId == 116495829188952 then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text)
     end
     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
-    if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds then
+    if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds and getgenv().webhook_link ~= nil then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
 		local Content = ''
@@ -170,27 +172,29 @@ elseif game.PlaceId == 116495829188952 then
 		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
 		})
     else
-        local OSTime = os.time()
-		local Time = os.date('!*t', OSTime)
-		local Content = ''
-		local Embed = {
-		    title = game:GetService("Players").LocalPlayer.Name, 
-		    description = "Has " .. game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text .. " bonds",
-		    color = 5814783,
-		    footer = {
-		        text = "ZLP_HUB"
-		   },  
-		    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-		}
-		local requestFunc = syn and syn.request or http_request or request  
-		requestFunc({
-		    Url = getgenv().webhook_link,
-		    Method = 'POST',
-		    Headers = {
-		        ['Content-Type'] = 'application/json'
-		    },
-		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-		})
+        if getgenv().webhook_link ~= nil
+            local OSTime = os.time()
+		    local Time = os.date('!*t', OSTime)
+		    local Content = ''
+		    local Embed = {
+		        title = game:GetService("Players").LocalPlayer.Name, 
+		        description = "Has " .. game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text .. " bonds",
+		        color = 5814783,
+		        footer = {
+		            text = "ZLP_HUB"
+		       },  
+		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		    }
+		    local requestFunc = syn and syn.request or http_request or request  
+		    requestFunc({
+		        Url = getgenv().webhook_link,
+		        Method = 'POST',
+		        Headers = {
+		            ['Content-Type'] = 'application/json'
+		        },
+		        Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		    })
+        end
         local dt = DateTime.now().UnixTimestamp
         while true do
             if (DateTime.now().UnixTimestamp - dt) > 60 then
