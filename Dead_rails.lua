@@ -149,7 +149,7 @@ elseif game.PlaceId == 116495829188952 then
 		local Content = ''
 		local Embed = {
 		    title = game:GetService("Players").LocalPlayer.Name, 
-		    description = "Has more than " .. game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text .. " bonds",
+		    description = "Has more than " .. getgenv().bond .. " bonds",
 		    color = 5814783,
 		    footer = {
 		        text = "ZLP_HUB"
