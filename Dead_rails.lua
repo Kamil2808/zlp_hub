@@ -166,7 +166,7 @@ elseif game.PlaceId == 116495829188952 then
 		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
 		})
     else
-        if getgenv().webhook_link ~= ""
+        if getgenv().webhook_link ~= "" then
             local OSTime = os.time()
 		    local Time = os.date('!*t', OSTime)
 		    local Content = ''
