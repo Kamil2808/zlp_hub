@@ -141,13 +141,7 @@ elseif game.PlaceId == 116495829188952 then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = 0
     end
     wait(3)
-    local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
-    if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins then
-        data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins = 0
-    end
-    if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds then
-        data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text)
-    end
+    data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text)
     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
     if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds and getgenv().webhook_link ~= nil then
         local OSTime = os.time()
