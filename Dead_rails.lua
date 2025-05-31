@@ -14,6 +14,9 @@ if game.PlaceId == 70876832253163 then
         writefile("ZLP_HUB/Dead_Rails.dat", "{}")
     end
     local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
+    if not data[tostring(game:GetService("Players").LocalPlayer.UserId)] then
+        data[tostring(game:GetService("Players").LocalPlayer.UserId)] = {}
+    end
     if not data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins then
         data[tostring(game:GetService("Players").LocalPlayer.UserId)].rejoins = 0
     end
