@@ -70,7 +70,14 @@ if game.PlaceId == 70876832253163 then
         getgenv().disable_auto_execute = true
         getgenv().auto_bond = true
         print("ye1")
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();
+        local success, errorMessage = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();
+        end)
+
+        if not success then
+            warn(errorMessage)
+        end
+        
         local x = true
         local v = true
         local f = true
