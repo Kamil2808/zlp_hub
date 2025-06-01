@@ -116,7 +116,7 @@ if game.PlaceId == 70876832253163 then
             if CardScreen.Background.MainFrame.Holder.Frame:GetChildren()[3].Text == "Resetting Character" and f then
                 f = false
                 local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
-                data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds + tonumber(CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text)
+                data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) + tonumber(CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text)
                 writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
             end
             wait(1)      
