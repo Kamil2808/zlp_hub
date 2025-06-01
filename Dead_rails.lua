@@ -43,7 +43,7 @@ if game.PlaceId == 70876832253163 then
         ts:Teleport(116495829188952, p)
     end
     
-    if tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds and getgenv().webhook_link ~= "" then
+    if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds) and (getgenv().webhook_link ~= "") then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
 		local Content = ''
