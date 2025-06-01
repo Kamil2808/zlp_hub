@@ -77,8 +77,9 @@ if game.PlaceId == 70876832253163 then
         local CardScreen = game:GetService("CoreGui"):WaitForChild("CardScreen")
 
         while x do
-            
+            print("zv")
             if ((DateTime.now().UnixTimestamp - dt) > 20) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
+                print("ddfs")
                 if v and getgenv().webhook_link ~= "" then
                     local OSTime = os.time()
 	    	        local Time = os.date('!*t', OSTime)
