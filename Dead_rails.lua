@@ -69,6 +69,7 @@ if game.PlaceId == 70876832253163 then
         local dt = DateTime.now().UnixTimestamp
         getgenv().disable_auto_execute = true
         getgenv().auto_bond = true
+        print("ye1")
         loadstring(game:HttpGet("https://get.nathub.xyz/loader"))();
         local x = true
         local v = true
