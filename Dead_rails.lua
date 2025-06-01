@@ -74,41 +74,46 @@ if game.PlaceId == 70876832253163 then
         local v = true
         local f = true
         
-        local CardScreen = game:GetService("CoreGui"):WaitForChild("CardScreen")
+        --local CardScreen = game:GetService("CoreGui"):WaitForChild("CardScreen")
+
+        wait(10)
 
         while x do
             print("zv")
             if ((DateTime.now().UnixTimestamp - dt) > 20) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
                 print("ddfs")
-                if v and getgenv().webhook_link ~= "" then
-                    local OSTime = os.time()
-	    	        local Time = os.date('!*t', OSTime)
-	    	        local Content = ''
-	    	        local Embed = {
-	    	            title = game:GetService("Players").LocalPlayer.Name, 
-	    	            description = "Failed!",
-	    	            color = 16721703,
-	    	            footer = {
-	    	                text = "ZLP_HUB"
-	    	           },  
-	    	            timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-	    	        }
-	    	        local requestFunc = syn and syn.request or http_request or request  
-	    	        requestFunc({
-	    	            Url = getgenv().webhook_link,
-	    	            Method = 'POST',
-	    	            Headers = {
-	    	                ['Content-Type'] = 'application/json'
-	    	            },
-	    	            Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-	    	        })
+                if v then
+                    if getgenv().webhook_link ~= "" then
+                        local OSTime = os.time()
+	    	            local Time = os.date('!*t', OSTime)
+	    	            local Content = ''
+	    	            local Embed = {
+	    	                title = game:GetService("Players").LocalPlayer.Name, 
+	    	                description = "Failed!",
+	    	                color = 16721703,
+	    	                footer = {
+	    	                    text = "ZLP_HUB"
+	    	               },  
+	    	                timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+	    	            }
+	    	            local requestFunc = syn and syn.request or http_request or request  
+	    	            requestFunc({
+	    	                Url = getgenv().webhook_link,
+	    	                Method = 'POST',
+	    	                Headers = {
+	    	                    ['Content-Type'] = 'application/json'
+	    	                },
+	    	                Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+	    	            })
+                    end
+                    local args = {
+           			    false
+        		    }
+        		    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
+                    game.Players.LocalPlayer.Character:BreakJoints()
                     v = false
                 end
-	    		local args = {
-           			false
-        		}
-        		game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
-                game.Players.LocalPlayer.Character:BreakJoints()
+	    		
             elseif ((DateTime.now().UnixTimestamp - dt) > 40) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
                 local ts = game:GetService("TeleportService")
                 local p = game:GetService("Players").LocalPlayer
