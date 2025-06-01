@@ -69,7 +69,7 @@ if game.PlaceId == 70876832253163 then
         local dt = DateTime.now().UnixTimestamp
         getgenv().disable_auto_execute = true
         getgenv().auto_bond = true
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();
+        loadstring(game:HttpGet("https://get.nathub.xyz/loader"))();
         local x = true
         local v = true
         local f = true
