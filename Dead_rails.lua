@@ -57,7 +57,17 @@ if game.PlaceId == 70876832253163 then
 		       },  
 		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
 		    }
-		    local requestFunc = syn and syn.request or http_request or request  
+		    local requestFunc
+            if syn and type(syn.request) == "function" then
+                requestFunc = syn.request
+            elseif type(http_request) == "function" then
+                requestFunc = http_request
+            elseif type(request) == "function" then
+                requestFunc = request
+            else
+                warn("Не найдена функция для HTTP-запросов!")
+                return
+            end
 		    requestFunc({
 		        Url = getgenv().webhook_link,
 		        Method = 'POST',
@@ -102,7 +112,17 @@ if game.PlaceId == 70876832253163 then
 	    	               },  
 	    	                timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
 	    	            }
-	    	            local requestFunc = syn and syn.request or http_request or request  
+	    	            local requestFunc
+                        if syn and type(syn.request) == "function" then
+                            requestFunc = syn.request
+                        elseif type(http_request) == "function" then
+                            requestFunc = http_request
+                        elseif type(request) == "function" then
+                            requestFunc = request
+                        else
+                            warn("Не найдена функция для HTTP-запросов!")
+                            return
+                        end
 	    	            requestFunc({
 	    	                Url = getgenv().webhook_link,
 	    	                Method = 'POST',
@@ -156,28 +176,40 @@ elseif game.PlaceId == 116495829188952 then
     wait(3)
     data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text)
     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
-    if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds and getgenv().webhook_link ~= "" then
-        local OSTime = os.time()
-		local Time = os.date('!*t', OSTime)
-		local Content = ''
-		local Embed = {
-		    title = game:GetService("Players").LocalPlayer.Name, 
-		    description = "Has more than " .. tostring(getgenv().bonds) .. " bonds",
-		    color = 5814783,
-		    footer = {
-		        text = "ZLP_HUB"
-		   },  
-		    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-		}
-		local requestFunc = syn and syn.request or http_request or request  
-		requestFunc({
-		    Url = getgenv().webhook_link,
-		    Method = 'POST',
-		    Headers = {
-		        ['Content-Type'] = 'application/json'
-		    },
-		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-		})
+    if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds then
+        if getgenv().webhook_link ~= "" then
+            local OSTime = os.time()
+		    local Time = os.date('!*t', OSTime)
+		    local Content = ''
+		    local Embed = {
+		        title = game:GetService("Players").LocalPlayer.Name, 
+		        description = "Has more than " .. tostring(getgenv().bonds) .. " bonds",
+		        color = 5814783,
+		        footer = {
+		            text = "ZLP_HUB"
+		       },  
+		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		    }
+		    local requestFunc
+            if syn and type(syn.request) == "function" then
+                requestFunc = syn.request
+            elseif type(http_request) == "function" then
+                requestFunc = http_request
+            elseif type(request) == "function" then
+                requestFunc = request
+            else
+                warn("Не найдена функция для HTTP-запросов!")
+                return
+            end
+		    requestFunc({
+		        Url = getgenv().webhook_link,
+		        Method = 'POST',
+		        Headers = {
+		            ['Content-Type'] = 'application/json'
+		        },
+		        Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		    })
+        end
     else
         if getgenv().webhook_link ~= "" then
             local OSTime = os.time()
@@ -192,7 +224,17 @@ elseif game.PlaceId == 116495829188952 then
 		       },  
 		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
 		    }
-		    local requestFunc = syn and syn.request or http_request or request  
+		    local requestFunc
+            if syn and type(syn.request) == "function" then
+                requestFunc = syn.request
+            elseif type(http_request) == "function" then
+                requestFunc = http_request
+            elseif type(request) == "function" then
+                requestFunc = request
+            else
+                warn("Не найдена функция для HTTP-запросов!")
+                return
+            end
 		    requestFunc({
 		        Url = getgenv().webhook_link,
 		        Method = 'POST',
