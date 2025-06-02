@@ -44,7 +44,7 @@ if game.PlaceId == 70876832253163 then
     end
     
     if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds) then
-        if (getgenv().webhook_link ~= "")
+        if (getgenv().webhook_link ~= "") then
             local OSTime = os.time()
 		    local Time = os.date('!*t', OSTime)
 		    local Content = ''
