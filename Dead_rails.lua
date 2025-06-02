@@ -43,45 +43,33 @@ if game.PlaceId == 70876832253163 then
         ts:Teleport(116495829188952, p)
     end
     
-    if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds) then
-        if (getgenv().webhook_link ~= "") then
-            local OSTime = os.time()
-		    local Time = os.date('!*t', OSTime)
-		    local Content = ''
-		    local Embed = {
-		        title = game:GetService("Players").LocalPlayer.Name, 
-		        description = "Has more than " .. game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text .. " bonds",
-		        color = 5814783,
-		        footer = {
-		            text = "ZLP_HUB"
-		       },  
-		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-		    }
-		    local requestFunc
-            if syn and type(syn.request) == "function" then
-                requestFunc = syn.request
-            elseif type(http_request) == "function" then
-                requestFunc = http_request
-            elseif type(request) == "function" then
-                requestFunc = request
-            else
-                warn("Не найдена функция для HTTP-запросов!")
-                return
-            end
-		    requestFunc({
-		        Url = getgenv().webhook_link,
-		        Method = 'POST',
-		        Headers = {
-		            ['Content-Type'] = 'application/json'
-		        },
-		        Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-		    })
-        
+    if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds) and (getgenv().webhook_link ~= "") then
+        local OSTime = os.time()
+		local Time = os.date('!*t', OSTime)
+		local Content = ''
+		local Embed = {
+		    title = game:GetService("Players").LocalPlayer.Name, 
+		    description = "Has more than " .. game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text .. " bonds",
+		    color = 5814783,
+		    footer = {
+		        text = "ZLP_HUB"
+		   },  
+		    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		}
+		local requestFunc = syn and syn.request or http_request or request  
+		requestFunc({
+		    Url = getgenv().webhook_link,
+		    Method = 'POST',
+		    Headers = {
+		        ['Content-Type'] = 'application/json'
+		    },
+		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		})
     else
         local dt = DateTime.now().UnixTimestamp
         getgenv().disable_auto_execute = true
         getgenv().auto_bond = true
-
+        print("ye1")
         local success, errorMessage = pcall(function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();
         end)
@@ -97,7 +85,7 @@ if game.PlaceId == 70876832253163 then
         local CardScreen = game:GetService("CoreGui"):WaitForChild("CardScreen")
 
         while x do
-            if ((DateTime.now().UnixTimestamp - dt) > 15) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
+            if ((DateTime.now().UnixTimestamp - dt) > 20) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
                 if v then
                     if getgenv().webhook_link ~= "" then
                         local OSTime = os.time()
@@ -112,17 +100,7 @@ if game.PlaceId == 70876832253163 then
 	    	               },  
 	    	                timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
 	    	            }
-	    	            local requestFunc
-                        if syn and type(syn.request) == "function" then
-                            requestFunc = syn.request
-                        elseif type(http_request) == "function" then
-                            requestFunc = http_request
-                        elseif type(request) == "function" then
-                            requestFunc = request
-                        else
-                            warn("Не найдена функция для HTTP-запросов!")
-                            return
-                        end
+	    	            local requestFunc = syn and syn.request or http_request or request  
 	    	            requestFunc({
 	    	                Url = getgenv().webhook_link,
 	    	                Method = 'POST',
@@ -139,9 +117,8 @@ if game.PlaceId == 70876832253163 then
                     game.Players.LocalPlayer.Character:BreakJoints()
                     v = false
                 end
-	    	end
-            
-            if ((DateTime.now().UnixTimestamp - dt) > 90) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
+	    		
+            elseif ((DateTime.now().UnixTimestamp - dt) > 40) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
                 local ts = game:GetService("TeleportService")
                 local p = game:GetService("Players").LocalPlayer
                 ts:Teleport(116495829188952, p)
@@ -177,40 +154,28 @@ elseif game.PlaceId == 116495829188952 then
     wait(3)
     data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text)
     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
-    if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds then
-        if getgenv().webhook_link ~= "" then
-            local OSTime = os.time()
-		    local Time = os.date('!*t', OSTime)
-		    local Content = ''
-		    local Embed = {
-		        title = game:GetService("Players").LocalPlayer.Name, 
-		        description = "Has more than " .. tostring(getgenv().bonds) .. " bonds",
-		        color = 5814783,
-		        footer = {
-		            text = "ZLP_HUB"
-		       },  
-		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-		    }
-		    local requestFunc
-            if syn and type(syn.request) == "function" then
-                requestFunc = syn.request
-            elseif type(http_request) == "function" then
-                requestFunc = http_request
-            elseif type(request) == "function" then
-                requestFunc = request
-            else
-                warn("Не найдена функция для HTTP-запросов!")
-                return
-            end
-		    requestFunc({
-		        Url = getgenv().webhook_link,
-		        Method = 'POST',
-		        Headers = {
-		            ['Content-Type'] = 'application/json'
-		        },
-		        Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-		    })
-        end
+    if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds and getgenv().webhook_link ~= "" then
+        local OSTime = os.time()
+		local Time = os.date('!*t', OSTime)
+		local Content = ''
+		local Embed = {
+		    title = game:GetService("Players").LocalPlayer.Name, 
+		    description = "Has more than " .. tostring(getgenv().bonds) .. " bonds",
+		    color = 5814783,
+		    footer = {
+		        text = "ZLP_HUB"
+		   },  
+		    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		}
+		local requestFunc = syn and syn.request or http_request or request  
+		requestFunc({
+		    Url = getgenv().webhook_link,
+		    Method = 'POST',
+		    Headers = {
+		        ['Content-Type'] = 'application/json'
+		    },
+		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		})
     else
         if getgenv().webhook_link ~= "" then
             local OSTime = os.time()
@@ -225,17 +190,7 @@ elseif game.PlaceId == 116495829188952 then
 		       },  
 		        timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
 		    }
-		    local requestFunc
-            if syn and type(syn.request) == "function" then
-                requestFunc = syn.request
-            elseif type(http_request) == "function" then
-                requestFunc = http_request
-            elseif type(request) == "function" then
-                requestFunc = request
-            else
-                warn("Не найдена функция для HTTP-запросов!")
-                return
-            end
+		    local requestFunc = syn and syn.request or http_request or request  
 		    requestFunc({
 		        Url = getgenv().webhook_link,
 		        Method = 'POST',
