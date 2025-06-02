@@ -139,7 +139,8 @@ if game.PlaceId == 70876832253163 then
                     game.Players.LocalPlayer.Character:BreakJoints()
                     v = false
                 end
-	    		
+	    	end
+            
             if ((DateTime.now().UnixTimestamp - dt) > 90) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
                 local ts = game:GetService("TeleportService")
                 local p = game:GetService("Players").LocalPlayer
