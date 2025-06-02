@@ -120,7 +120,7 @@ if game.PlaceId == 70876832253163 then
                     v = false
                 end
 	    		
-            elseif ((DateTime.now().UnixTimestamp - dt) > 40) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
+            if ((DateTime.now().UnixTimestamp - dt) > 90) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
                 local ts = game:GetService("TeleportService")
                 local p = game:GetService("Players").LocalPlayer
                 ts:Teleport(116495829188952, p)
