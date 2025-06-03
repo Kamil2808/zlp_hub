@@ -1,5 +1,8 @@
 getgenv().retry = getgenv().retry or 0
-getgenv().webhook_link = getgenv().webhook_link or ""
+getgenv().webhook = getgenv().webhook_link or ""
+if getgenv().webhook_link then
+    getgenv().webhook_link = nil
+end
 getgenv().bonds = getgenv().bonds or 0
 
 print("Executing ZLP_HUB dead rails script...")
@@ -43,7 +46,7 @@ if game.PlaceId == 70876832253163 then
         ts:Teleport(116495829188952, p)
     end
     
-    if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds) and (getgenv().webhook_link ~= "") then
+    if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds) and (getgenv().webhook ~= "") then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
 		local Content = ''
@@ -58,7 +61,7 @@ if game.PlaceId == 70876832253163 then
 		}
 		local requestFunc = syn and syn.request or http_request or request  
 		requestFunc({
-		    Url = getgenv().webhook_link,
+		    Url = getgenv().webhook,
 		    Method = 'POST',
 		    Headers = {
 		        ['Content-Type'] = 'application/json'
@@ -69,7 +72,6 @@ if game.PlaceId == 70876832253163 then
         local dt = DateTime.now().UnixTimestamp
         getgenv().disable_auto_execute = true
         getgenv().auto_bond = true
-        print("ye1")
         local success, errorMessage = pcall(function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();
         end)
@@ -87,7 +89,7 @@ if game.PlaceId == 70876832253163 then
         while x do
             if ((DateTime.now().UnixTimestamp - dt) > 15) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
                 if v then
-                    if getgenv().webhook_link ~= "" then
+                    if getgenv().webhook ~= "" then
                         local OSTime = os.time()
 	    	            local Time = os.date('!*t', OSTime)
 	    	            local Content = ''
@@ -102,7 +104,7 @@ if game.PlaceId == 70876832253163 then
 	    	            }
 	    	            local requestFunc = syn and syn.request or http_request or request  
 	    	            requestFunc({
-	    	                Url = getgenv().webhook_link,
+	    	                Url = getgenv().webhook,
 	    	                Method = 'POST',
 	    	                Headers = {
 	    	                    ['Content-Type'] = 'application/json'
@@ -129,6 +131,29 @@ if game.PlaceId == 70876832253163 then
                 local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
                 data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) + tonumber(CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text)
                 writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
+                if getgenv().webhook ~= "" then
+                    local OSTime = os.time()
+		            local Time = os.date('!*t', OSTime)
+		            local Content = ''
+		            local Embed = {
+		                title = game:GetService("Players").LocalPlayer.Name, 
+		                description = "Has " .. game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text .. " bonds",
+		                color = 5814783,
+		                footer = {
+		                    text = "ZLP_HUB"
+		               },  
+		                timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		            }
+		            local requestFunc = syn and syn.request or http_request or request  
+		            requestFunc({
+		                Url = getgenv().webhook,
+		                Method = 'POST',
+		                Headers = {
+		                    ['Content-Type'] = 'application/json'
+		                },
+		                Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		            })
+                end
             end
             wait(1)      
         end
@@ -155,7 +180,7 @@ elseif game.PlaceId == 116495829188952 then
     data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text)
     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
     if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds then
-        if getgenv().webhook_link ~= "" then
+        if getgenv().webhook ~= "" then
             local OSTime = os.time()
 		    local Time = os.date('!*t', OSTime)
 		    local Content = ''
@@ -170,7 +195,7 @@ elseif game.PlaceId == 116495829188952 then
 		    }
 		    local requestFunc = syn and syn.request or http_request or request  
 		    requestFunc({
-		        Url = getgenv().webhook_link,
+		        Url = getgenv().webhook,
 		        Method = 'POST',
 		        Headers = {
 		            ['Content-Type'] = 'application/json'
@@ -179,7 +204,7 @@ elseif game.PlaceId == 116495829188952 then
 		    })
         end
     else
-        if getgenv().webhook_link ~= "" then
+        if getgenv().webhook ~= "" then
             local OSTime = os.time()
 		    local Time = os.date('!*t', OSTime)
 		    local Content = ''
@@ -194,7 +219,7 @@ elseif game.PlaceId == 116495829188952 then
 		    }
 		    local requestFunc = syn and syn.request or http_request or request  
 		    requestFunc({
-		        Url = getgenv().webhook_link,
+		        Url = getgenv().webhook,
 		        Method = 'POST',
 		        Headers = {
 		            ['Content-Type'] = 'application/json'
