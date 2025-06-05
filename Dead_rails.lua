@@ -1,14 +1,15 @@
 getgenv().retry = getgenv().retry or 0
 getgenv().webhook = getgenv().webhook_link or ""
-if getgenv().webhook_link then
-    getgenv().webhook_link = nil
-end
 getgenv().bonds = getgenv().bonds or 0
+getgenv().fps = getgenv().fps or false
 
 print("Executing ZLP_HUB dead rails script...")
 
 -- Load and execute the script
 if game.PlaceId == 70876832253163 then 
+    if getgenv().fps then
+        game:GetService("RunService"):Set3dRenderingEnabled(false)
+    end
     local zov = false
     if not isfolder("ZLP_HUB") then  
         makefolder("ZLP_HUB") 
@@ -160,6 +161,9 @@ if game.PlaceId == 70876832253163 then
     end
 
 elseif game.PlaceId == 116495829188952 then
+    if getgenv().fps then
+        game:GetService("RunService"):Set3dRenderingEnabled(false)
+    end
     if not isfolder("ZLP_HUB") then  
         makefolder("ZLP_HUB") 
     end  
