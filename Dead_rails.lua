@@ -1,5 +1,8 @@
 getgenv().retry = getgenv().retry or 0
 getgenv().webhook = getgenv().webhook_link or ""
+if getgenv().webhook_link then
+    getgenv().webhook_link = nil
+end
 getgenv().bonds = getgenv().bonds or 0
 getgenv().fps = getgenv().fps or false
 
