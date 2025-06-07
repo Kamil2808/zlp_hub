@@ -88,7 +88,6 @@ if game.PlaceId == 70876832253163 then
         local v = true
         local f = true
         
-        local CardScreen = game:GetService("CoreGui"):WaitForChild("CardScreen")
 
         while x do
             -- if ((DateTime.now().UnixTimestamp - dt) > 15) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
@@ -124,10 +123,18 @@ if game.PlaceId == 70876832253163 then
             --         v = false
             --     end
 	    	-- end
-            if ((DateTime.now().UnixTimestamp - dt) > 100) then
-                local ts = game:GetService("TeleportService")
-                local p = game:GetService("Players").LocalPlayer
-                ts:Teleport(116495829188952, p)
+            print(DateTime.now().UnixTimestamp - dt)
+            if ((DateTime.now().UnixTimestamp - dt) > 80) and v then
+
+                local args = {
+	                false
+                }
+                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
+                game.Players.LocalPlayer.Character:BreakJoints()
+                v = false
+                -- local ts = game:GetService("TeleportService")
+                -- local p = game:GetService("Players").LocalPlayer
+                -- ts:Teleport(116495829188952, p)
             end
 
             -- if CardScreen.Background.MainFrame.Holder.Frame:GetChildren()[3].Text == "Resetting Character" and f then
@@ -159,7 +166,7 @@ if game.PlaceId == 70876832253163 then
 		    --         })
             --     end
             -- end
-            -- wait(1)      
+            wait(1)      
         end
     end
 
