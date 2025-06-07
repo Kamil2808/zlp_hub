@@ -10,9 +10,9 @@ print("Executing ZLP_HUB dead rails script...")
 
 -- Load and execute the script
 if game.PlaceId == 70876832253163 then 
-    if getgenv().fps then
-         game:GetService("RunService"):Set3dRenderingEnabled(false)
-    end
+    -- if getgenv().fps then
+    --      game:GetService("RunService"):Set3dRenderingEnabled(false)
+    -- end
     local zov = false
     if not isfolder("ZLP_HUB") then  
         makefolder("ZLP_HUB") 
@@ -171,9 +171,9 @@ if game.PlaceId == 70876832253163 then
     end
 
 elseif game.PlaceId == 116495829188952 then
-    if getgenv().fps then
-        game:GetService("RunService"):Set3dRenderingEnabled(false)
-    end
+    -- if getgenv().fps then
+    --     game:GetService("RunService"):Set3dRenderingEnabled(false)
+    -- end
     if not isfolder("ZLP_HUB") then  
         makefolder("ZLP_HUB") 
     end  
