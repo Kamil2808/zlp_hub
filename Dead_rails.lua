@@ -247,12 +247,14 @@ elseif game.PlaceId == 116495829188952 then
                 if ammount == "0" then
                     workspace.PartyZones.PartyZone.Hitbox.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                     wait(0.1)
+
                     local args = {
-                        {
-                            trainId = "default",
-                            maxMembers = 1,
-                            gameMode = "Normal"
-                        }
+	                    {
+		                    isPrivate = true,
+		                    maxMembers = 1,
+		                    trainId = "default",
+		                    gameMode = "Normal"
+	                    }
                     }
                     game:GetService("ReplicatedStorage"):WaitForChild("Shared"):WaitForChild("Network"):WaitForChild("RemoteEvent"):WaitForChild("CreateParty"):FireServer(unpack(args))
                 end
