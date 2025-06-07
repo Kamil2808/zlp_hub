@@ -124,7 +124,7 @@ if game.PlaceId == 70876832253163 then
             --     end
 	    	-- end
             print(DateTime.now().UnixTimestamp - dt)
-            if ((DateTime.now().UnixTimestamp - dt) > 80) and v then
+            if ((DateTime.now().UnixTimestamp - dt) > 150) and v then
 
                 local args = {
 	                false
