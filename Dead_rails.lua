@@ -1,4 +1,4 @@
-getgenv().retry = getgenv().retry or 0
+getgenv().retry = getgenv().retry or 5
 getgenv().webhook = getgenv().webhook_link or ""
 if getgenv().webhook_link then
     getgenv().webhook_link = nil
@@ -10,9 +10,9 @@ print("Executing ZLP_HUB dead rails script...")
 
 -- Load and execute the script
 if game.PlaceId == 70876832253163 then 
-    -- if getgenv().fps then
-    --     game:GetService("RunService"):Set3dRenderingEnabled(false)
-    -- end
+    if getgenv().fps then
+         game:GetService("RunService"):Set3dRenderingEnabled(false)
+    end
     local zov = false
     if not isfolder("ZLP_HUB") then  
         makefolder("ZLP_HUB") 
@@ -74,10 +74,10 @@ if game.PlaceId == 70876832253163 then
 		})
     else
         local dt = DateTime.now().UnixTimestamp
-        getgenv().disable_auto_execute = true
-        getgenv().auto_bond = true
+        -- getgenv().disable_auto_execute = true
+        -- getgenv().auto_bond = true
         local success, errorMessage = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/NatHub.lua"))();
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/m00ndiety/OP-AUTO-BONDS-V3/refs/heads/main/Keyless-BONDS-v3"))()
         end)
 
         if not success then
@@ -91,82 +91,82 @@ if game.PlaceId == 70876832253163 then
         local CardScreen = game:GetService("CoreGui"):WaitForChild("CardScreen")
 
         while x do
-            if ((DateTime.now().UnixTimestamp - dt) > 15) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
-                if v then
-                    if getgenv().webhook ~= "" then
-                        local OSTime = os.time()
-	    	            local Time = os.date('!*t', OSTime)
-	    	            local Content = ''
-	    	            local Embed = {
-	    	                title = game:GetService("Players").LocalPlayer.Name, 
-	    	                description = "Failed!",
-	    	                color = 16721703,
-	    	                footer = {
-	    	                    text = "ZLP_HUB"
-	    	               },  
-	    	                timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-	    	            }
-	    	            local requestFunc = syn and syn.request or http_request or request  
-	    	            requestFunc({
-	    	                Url = getgenv().webhook,
-	    	                Method = 'POST',
-	    	                Headers = {
-	    	                    ['Content-Type'] = 'application/json'
-	    	                },
-	    	                Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-	    	            })
-                    end
-                    local args = {
-           			    false
-        		    }
-        		    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
-                    game.Players.LocalPlayer.Character:BreakJoints()
-                    v = false
-                end
-	    	end
-            if ((DateTime.now().UnixTimestamp - dt) > 80) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
+            -- if ((DateTime.now().UnixTimestamp - dt) > 15) and (CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text == "0") then
+            --     if v then
+            --         if getgenv().webhook ~= "" then
+            --             local OSTime = os.time()
+	    	--             local Time = os.date('!*t', OSTime)
+	    	--             local Content = ''
+	    	--             local Embed = {
+	    	--                 title = game:GetService("Players").LocalPlayer.Name, 
+	    	--                 description = "Failed!",
+	    	--                 color = 16721703,
+	    	--                 footer = {
+	    	--                     text = "ZLP_HUB"
+	    	--                },  
+	    	--                 timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+	    	--             }
+	    	--             local requestFunc = syn and syn.request or http_request or request  
+	    	--             requestFunc({
+	    	--                 Url = getgenv().webhook,
+	    	--                 Method = 'POST',
+	    	--                 Headers = {
+	    	--                     ['Content-Type'] = 'application/json'
+	    	--                 },
+	    	--                 Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+	    	--             })
+            --         end
+            --         local args = {
+           	-- 		    false
+        	-- 	    }
+        	-- 	    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("EndDecision"):FireServer(unpack(args))
+            --         game.Players.LocalPlayer.Character:BreakJoints()
+            --         v = false
+            --     end
+	    	-- end
+            if ((DateTime.now().UnixTimestamp - dt) > 100) then
                 local ts = game:GetService("TeleportService")
                 local p = game:GetService("Players").LocalPlayer
                 ts:Teleport(116495829188952, p)
             end
 
-            if CardScreen.Background.MainFrame.Holder.Frame:GetChildren()[3].Text == "Resetting Character" and f then
-                f = false
-                local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
-                data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) + tonumber(CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text)
-                writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
-                if getgenv().webhook ~= "" then
-                    local OSTime = os.time()
-		            local Time = os.date('!*t', OSTime)
-		            local Content = ''
-		            local Embed = {
-		                title = game:GetService("Players").LocalPlayer.Name, 
-		                description = "Has " .. data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds .. " bonds",
-		                color = 5814783,
-		                footer = {
-		                    text = "ZLP_HUB"
-		               },  
-		                timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-		            }
-		            local requestFunc = syn and syn.request or http_request or request  
-		            requestFunc({
-		                Url = getgenv().webhook,
-		                Method = 'POST',
-		                Headers = {
-		                    ['Content-Type'] = 'application/json'
-		                },
-		                Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-		            })
-                end
-            end
-            wait(1)      
+            -- if CardScreen.Background.MainFrame.Holder.Frame:GetChildren()[3].Text == "Resetting Character" and f then
+            --     f = false
+            --     local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
+            --     data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) + tonumber(CardScreen.Background.MainFrame.Holder:GetChildren()[4]:GetChildren()[3].Text)
+            --     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
+            --     if getgenv().webhook ~= "" then
+            --         local OSTime = os.time()
+		    --         local Time = os.date('!*t', OSTime)
+		    --         local Content = ''
+		    --         local Embed = {
+		    --             title = game:GetService("Players").LocalPlayer.Name, 
+		    --             description = "Has " .. data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds .. " bonds",
+		    --             color = 5814783,
+		    --             footer = {
+		    --                 text = "ZLP_HUB"
+		    --            },  
+		    --             timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		    --         }
+		    --         local requestFunc = syn and syn.request or http_request or request  
+		    --         requestFunc({
+		    --             Url = getgenv().webhook,
+		    --             Method = 'POST',
+		    --             Headers = {
+		    --                 ['Content-Type'] = 'application/json'
+		    --             },
+		    --             Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		    --         })
+            --     end
+            -- end
+            -- wait(1)      
         end
     end
 
 elseif game.PlaceId == 116495829188952 then
-    -- if getgenv().fps then
-    --     game:GetService("RunService"):Set3dRenderingEnabled(false)
-    -- end
+    if getgenv().fps then
+        game:GetService("RunService"):Set3dRenderingEnabled(false)
+    end
     if not isfolder("ZLP_HUB") then  
         makefolder("ZLP_HUB") 
     end  
@@ -263,3 +263,4 @@ elseif game.PlaceId == 116495829188952 then
 else 
     print("Not dead rails game!")
 end
+
