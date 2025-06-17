@@ -50,29 +50,29 @@ if game.PlaceId == 70876832253163 then
         ts:Teleport(116495829188952, p)
     end
     
-    if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds or getgenv().bonds ~= 0)  and (getgenv().webhook ~= "") then
-        local OSTime = os.time()
-		local Time = os.date('!*t', OSTime)
-		local Content = ''
-		local Embed = {
-		    title = game:GetService("Players").LocalPlayer.Name, 
-		    description = "Has more than " .. game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text .. " bonds",
-		    color = 5814783,
-		    footer = {
-		        text = "ZLP_HUB"
-		   },  
-		    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-		}
-		local requestFunc = syn and syn.request or http_request or request  
-		requestFunc({
-		    Url = getgenv().webhook,
-		    Method = 'POST',
-		    Headers = {
-		        ['Content-Type'] = 'application/json'
-		    },
-		    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-		})
-    else
+    -- if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds or getgenv().bonds ~= 0)  and (getgenv().webhook ~= "") then
+    --     local OSTime = os.time()
+	-- 	local Time = os.date('!*t', OSTime)
+	-- 	local Content = ''
+	-- 	local Embed = {
+	-- 	    title = game:GetService("Players").LocalPlayer.Name, 
+	-- 	    description = "Has more than " .. game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text .. " bonds",
+	-- 	    color = 5814783,
+	-- 	    footer = {
+	-- 	        text = "ZLP_HUB"
+	-- 	   },  
+	-- 	    timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+	-- 	}
+	-- 	local requestFunc = syn and syn.request or http_request or request  
+	-- 	requestFunc({
+	-- 	    Url = getgenv().webhook,
+	-- 	    Method = 'POST',
+	-- 	    Headers = {
+	-- 	        ['Content-Type'] = 'application/json'
+	-- 	    },
+	-- 	    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+	-- 	})
+    if true
         local dt = DateTime.now().UnixTimestamp
         -- getgenv().disable_auto_execute = true
         -- getgenv().auto_bond = true
