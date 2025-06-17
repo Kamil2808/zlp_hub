@@ -3,7 +3,7 @@ getgenv().webhook = getgenv().webhook_link or ""
 if getgenv().webhook_link then
     getgenv().webhook_link = nil
 end
-getgenv().bonds = getgenv().bonds or 0
+getgenv().bonds = 0
 getgenv().fps = getgenv().fps or false
 
 print("Executing ZLP_HUB dead rails script...")
