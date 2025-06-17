@@ -50,7 +50,7 @@ if game.PlaceId == 70876832253163 then
         ts:Teleport(116495829188952, p)
     end
     
-    if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds or getgenv().bonds) ~= 0 and (getgenv().webhook ~= "") then
+    if (tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) > getgenv().bonds or getgenv().bonds ~= 0)  and (getgenv().webhook ~= "") then
         local OSTime = os.time()
 		local Time = os.date('!*t', OSTime)
 		local Content = ''
@@ -193,7 +193,7 @@ elseif game.PlaceId == 116495829188952 then
     wait(3)
     data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text)
     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
-    if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds and etgenv().bonds ~= 0 then
+    if tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BondDisplay.BondInfo.BondCount.Text) > getgenv().bonds and getgenv().bonds ~= 0 then
         if getgenv().webhook ~= "" then
             local OSTime = os.time()
 		    local Time = os.date('!*t', OSTime)
