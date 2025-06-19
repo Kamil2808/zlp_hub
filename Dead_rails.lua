@@ -72,7 +72,7 @@ if game.PlaceId == 70876832253163 then
 	-- 	    },
 	-- 	    Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
 	-- 	})
-    if true
+    if true then
         local dt = DateTime.now().UnixTimestamp
         -- getgenv().disable_auto_execute = true
         -- getgenv().auto_bond = true
