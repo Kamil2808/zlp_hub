@@ -77,7 +77,9 @@ if game.PlaceId == 70876832253163 then
         -- getgenv().disable_auto_execute = true
         -- getgenv().auto_bond = true
         local success, errorMessage = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/m00ndiety/OP-AUTO-BONDS-V3/refs/heads/main/Keyless-BONDS-v3"))()
+            getgenv().auto_bond=true
+            getgenv().auto_win=false
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/m00ndiety/Dead-rails/refs/heads/main/Auto-Win-With-Bonds'))()
         end)
 
         if not success then
@@ -272,4 +274,3 @@ elseif game.PlaceId == 116495829188952 then
 else 
     print("Not dead rails game!")
 end
-
