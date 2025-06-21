@@ -10,6 +10,11 @@ print("Executing ZLP_HUB dead rails script...")
 
 -- Load and execute the script
 if game.PlaceId == 70876832253163 then 
+    game.Players.PlayerRemoving: connect (function (plr)
+        if plr == game.Players.LocalPlayer then
+        game:GetService('TeleportService'):Teleport(game.PlaceId)
+        end
+    end)
     -- if getgenv().fps then
     --      game:GetService("RunService"):Set3dRenderingEnabled(false)
     -- end
@@ -176,6 +181,11 @@ elseif game.PlaceId == 116495829188952 then
     -- if getgenv().fps then
     --     game:GetService("RunService"):Set3dRenderingEnabled(false)
     -- end
+    game.Players.PlayerRemoving: connect (function (plr)
+        if plr == game.Players.LocalPlayer then
+        game:GetService('TeleportService'):Teleport(game.PlaceId)
+        end
+    end)
     if not isfolder("ZLP_HUB") then  
         makefolder("ZLP_HUB") 
     end  
