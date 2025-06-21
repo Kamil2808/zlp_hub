@@ -259,7 +259,7 @@ elseif game.PlaceId == 116495829188952 then
                 local ammount = z:sub(1, 1)
                 if ammount == "0" then
                     workspace.PartyZones.PartyZone.Hitbox.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                    wait(0.1)
+                    wait(1)
 
                     local args = {
 	                    {
