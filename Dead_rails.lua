@@ -80,9 +80,7 @@ if game.PlaceId == 70876832253163 then
         -- getgenv().disable_auto_execute = true
         -- getgenv().auto_bond = true
         local success, errorMessage = pcall(function()
-            getgenv().auto_bond=true
-            getgenv().auto_win=false
-            loadstring(game:HttpGet('https://raw.githubusercontent.com/m00ndiety/Dead-rails/refs/heads/main/Auto-Win-With-Bonds'))()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/m00ndiety/Dead-rails/refs/heads/main/Auto-Bonds'))()
         end)
 
         if not success then
