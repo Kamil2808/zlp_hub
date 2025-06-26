@@ -141,35 +141,35 @@ if game.PlaceId == 70876832253163 then
                 -- ts:Teleport(116495829188952, p)
             end
 
-            if Players.LocalPlayer.Character.Humanoid.Health == 0 and f then
-                f = false
-                local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
-                data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) + tonumber(game:GetService("Players").LocalPlayer.PlayerGui.AutoFarmToggleUI.Frame:GetChildren()[7].TextLabel.Text:match("Bonds: (%d+)"))
-                writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
-                if getgenv().webhook ~= "" then
-                    local OSTime = os.time()
-		            local Time = os.date('!*t', OSTime)
-		            local Content = ''
-		            local Embed = {
-		                title = game:GetService("Players").LocalPlayer.Name, 
-		                description = "Has " .. data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds .. " bonds",
-		                color = 5814783,
-		                footer = {
-		                    text = "ZLP_HUB"
-		               },  
-		                timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
-		            }
-		            local requestFunc = syn and syn.request or http_request or request  
-		            requestFunc({
-		                Url = getgenv().webhook,
-		                Method = 'POST',
-		                Headers = {
-		                    ['Content-Type'] = 'application/json'
-		                },
-		                Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
-		            })
-                end
-            end
+            -- if Players.LocalPlayer.Character.Humanoid.Health == 0 and f then
+            --     f = false
+            --     local data = game:GetService("HttpService"):JSONDecode(readfile("ZLP_HUB/Dead_Rails.dat")) 
+            --     data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds = tonumber(data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds) + tonumber(game:GetService("Players").LocalPlayer.PlayerGui.AutoFarmToggleUI.Frame:GetChildren()[7].TextLabel.Text:match("Bonds: (%d+)"))
+            --     writefile("ZLP_HUB/Dead_Rails.dat", game:GetService("HttpService"):JSONEncode(data))
+            --     if getgenv().webhook ~= "" then
+            --         local OSTime = os.time()
+		    --         local Time = os.date('!*t', OSTime)
+		    --         local Content = ''
+		    --         local Embed = {
+		    --             title = game:GetService("Players").LocalPlayer.Name, 
+		    --             description = "Has " .. data[tostring(game:GetService("Players").LocalPlayer.UserId)].bonds .. " bonds",
+		    --             color = 5814783,
+		    --             footer = {
+		    --                 text = "ZLP_HUB"
+		    --            },  
+		    --             timestamp = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec)
+		    --         }
+		    --         local requestFunc = syn and syn.request or http_request or request  
+		    --         requestFunc({
+		    --             Url = getgenv().webhook,
+		    --             Method = 'POST',
+		    --             Headers = {
+		    --                 ['Content-Type'] = 'application/json'
+		    --             },
+		    --             Body = game:GetService("HttpService"):JSONEncode({content = Content, embeds = {Embed}})
+		    --         })
+            --     end
+            -- end
             wait(1)      
         end
     end
